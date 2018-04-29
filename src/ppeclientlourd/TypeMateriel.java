@@ -6,5 +6,19 @@ class TypeMateriel {
     private String libelleTypeMateriel;
     private Famille laFamille;
     
+    
+	public TypeMateriel(String referenceInterne, String libelleTypeMateriel, Famille laFamille) {
+		
+		this.referenceInterne = referenceInterne;
+		this.libelleTypeMateriel = libelleTypeMateriel;
+		this.laFamille = laFamille;
+	}
+	
+	public String toString() {
+		return "" +referenceInterne +" " + libelleTypeMateriel + " " + laFamille.toString();
+	}
+    
+    
+    
     //public libre
 }
