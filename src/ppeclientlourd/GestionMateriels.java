@@ -6,17 +6,27 @@ public class GestionMateriels {
    
     public GestionMateriels (PersistanceSQL lesDonnees){
         //construit un objet GestionMateriels avec un modèle de persistance associé
+    	this.donnees = lesDonnees;
     }    
-    public void getClient(int idClient){
-       // return Client ;
-        //retourne l'objet Distributeur qui possède l'identifiant idDistributeur passé en paramètre
-        //retourne null si aucun Distributeur ne possède cet identifiant
+    public Client getClient(String idClient){
+       return (Client) donnees.ChargerDepuisBase(idClient, "Client");
     }
     
-    public void XmlClient (Client unClient){
+    public String XmlClient (Client unClient){
+    	String str = "<xml version=\"1.0\" encoding\"UTF-8\"?>\n"
+    			+	 "<listeMateriel>\n"
+    			+ 	 "<materiels idClient=\""+unClient.getNumClient() + "\">\n"
+    			+    "\t<sousContrat>\n";
+    			for(Materiel m : unClient.getLeContrat().getLesMaterielsAssures()) {
+    				str+=m.xmlMateriel();
+    			}
+    			
+    	
         //return String;
         //retourne une chaine de caractères qui représente le document XML de la liste des matériels 
         //du client passé en paramètre comme le montre l'exemple de l'annexe
+    	return str;
+    	
     }
     
     public static void XmlClientValide (String xml){

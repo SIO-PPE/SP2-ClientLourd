@@ -15,6 +15,16 @@ class Famille {
 public String toString() {
 	return codeFamille + " " + libelleFamille;
 }
+
+public String getCodeFamille() {
+	return codeFamille;
+}
+
+public String getLibelleFamille() {
+	return libelleFamille;
+}
+
+
      
     //libre
 }

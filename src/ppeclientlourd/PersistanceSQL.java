@@ -111,7 +111,7 @@ public class PersistanceSQL {
 
 
 					while(result1.next()){
-						Materiel mat = new Materiel(result1.getInt(1), result1.getDate(2), result1.getInt(4), result1.getString(5), (TypeMateriel)  ChargerDepuisBase(result1.getString(6), "LeTypeMateriel")); //TODO LE TYPE;
+						Materiel mat = new Materiel(result1.getInt(1), result1.getDate(2), result1.getDate(3), result1.getInt(4), result1.getString(5), (TypeMateriel)  ChargerDepuisBase(result1.getString(6), "LeTypeMateriel")); //TODO LE TYPE;
 						contrat.ajouteMateriel(mat);
 						
 					}

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Client {
     private String numClient;
     private String raisonSociale;
-    public String siren;
+    private String siren;
     private String codeApe;
     private String adresse; 
     private String telClient;
@@ -77,10 +77,50 @@ public class Client {
        // return ArrayList<Materiel>;
     }
     
+    
     public boolean estAssure(){
         //retourne vrai si le client est assuré, sinon faux
         return true;
     }
+
+	public String getNumClient() {
+		return numClient;
+	}
+
+	public String getRaisonSociale() {
+		return raisonSociale;
+	}
+
+	public String getSiren() {
+		return siren;
+	}
+
+	public String getCodeApe() {
+		return codeApe;
+	}
+
+	public String getAdresse() {
+		return adresse;
+	}
+
+	public String getTelClient() {
+		return telClient;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public int getDureeDeplacement() {
+		return dureeDeplacement;
+	}
+
+	public int getDistanceKm() {
+		return distanceKm;
+	}
+    
+    
+    
 }
 
 

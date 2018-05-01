@@ -17,6 +17,18 @@ class TypeMateriel {
 	public String toString() {
 		return "" +referenceInterne +" " + libelleTypeMateriel + " " + laFamille.toString();
 	}
+
+	public String getReferenceInterne() {
+		return referenceInterne;
+	}
+
+	public String getLibelleTypeMateriel() {
+		return libelleTypeMateriel;
+	}
+
+	public Famille getLaFamille() {
+		return laFamille;
+	}
     
     
     
