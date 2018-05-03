@@ -1,6 +1,7 @@
 
 package ppeclientlourd;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
@@ -22,6 +23,9 @@ class Materiel {
 		this.prixVente = prixVente;
 		this.emplacement = emplacement;
 		this.leType = leType;
+		
+	
+		
 	}
 
     public String toString() {
@@ -29,11 +33,18 @@ class Materiel {
     }
 
     
-	public String xmlMateriel(){
-        //retourne la chaîne correspondant au code xml représentant le matériel(annexe)
+	public String xmlMateriel(long nbJourAvantEcheance){
+   
 		String str = "\t<materiel numSerie=\""+ numSerie + "\"> \n"
-					 + "\t\t<type refInterne=\""+leType.getReferenceInterne() + "\" libelle=\""+leType.getLibelleTypeMateriel() +"\" /> \n"
-					 + "\t\t<famille codeFamille=\""+leType.getLaFamille().getCodeFamille() + "\" libelle=\""+leType.getLaFamille().getLibelleFamille()+"\" /> \n";
+						 + "\t\t<type refInterne=\""+leType.getReferenceInterne() + "\" libelle=\""+leType.getLibelleTypeMateriel() +"\" /> \n"
+						 + "\t\t<famille codeFamille=\""+leType.getLaFamille().getCodeFamille() + "\" libelle=\""+leType.getLaFamille().getLibelleFamille()+"\" /> \n"
+						 + "\t\t<date_vente>"+dateVente.toString()+"</date_vente>\n"
+						 + "\t\t<date_installation>"+dateInstall.toString()+"</date_installation>\n"
+						 + "\t\t<prix_vente>"+prixVente+"</prix_vente>\n"
+						 + "\t\t<emplacement>\""+emplacement+"\"</emplacement>\n"
+						 + (nbJourAvantEcheance !=0 ? "\t\t<nbJourAvantEcheance>"+nbJourAvantEcheance+"</nbJourAvantEcheance>\n" : "")
+						 + "\t</materiel>\n";
+		 
 					return str; 
 
     }

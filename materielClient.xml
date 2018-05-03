@@ -1,0 +1,35 @@
+<xml version="1.0" encoding"UTF-8"?>
+<!DOCTYPE listeMateriel SYSTEM "materielClient.dtd">
+<listeMateriel>
+<materiels idClient="157856">
+	<sousContrat>
+	<materiel numSerie="254"> 
+		<type refInterne="PC" libelle="petite caisse" /> 
+		<famille codeFamille="2" libelle="PC" /> 
+		<date_vente>2017-11-01</date_vente>
+		<date_inqsdsdstallation>2017-11-02</date_installation>
+		<prix_vente>100.0</prix_vente>
+		<emplacement>"caisse principale"</emplacement>
+		<nbJourAvantEcheance>161</nbJourAvantEcheance>
+	</materiel>
+	<materiel numSerie="636"> 
+		<type refInterne="GC" libelle="grosse caisse" /> 
+		<famille codeFamille="3" libelle="GC" /> 
+		<date_vente>2017-11-29</date_vente>
+		<date_inqsdsdstallation>2017-11-30</date_installation>
+		<prix_vente>500.0</prix_vente>
+		<emplacement>"l'une des grosse caisse"</emplacement>
+		<nbJourAvantEcheance>161</nbJourAvantEcheance>
+	</materiel>
+	</sousContrat>
+	<horsContrat>
+	<materiel numSerie="6612"> 
+		<type refInterne="GC" libelle="grosse caisse" /> 
+		<famille codeFamille="3" libelle="GC" /> 
+		<date_vente>2018-01-17</date_vente>
+		<date_inqsdsdstallation>2018-02-27</date_installation>
+		<prix_vente>550.0</prix_vente>
+		<emplacement>"l'une des grosse caisse"</emplacement>
+	</materiel>
+	</horsContrat>
+</listeMateriel>

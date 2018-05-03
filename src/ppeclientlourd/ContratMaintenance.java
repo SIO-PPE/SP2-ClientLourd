@@ -22,10 +22,10 @@ class ContratMaintenance {
         
 
         // Formule permettant de calculer la différence entre les deux dates
-	
-        long diff =  dateEcheance.getTime() - dateSignature.getTime() ;
+    	   Date now = new Date();
+        long diff =  dateEcheance.getTime() - now.getTime() ;
         
-        System.out.println(diff);
+
         
         
         long numberOfDay = (long) diff /CONST_DURATION_OF_DAY;

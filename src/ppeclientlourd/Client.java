@@ -13,7 +13,7 @@ public class Client {
     private String email;
     private int dureeDeplacement;
     private int distanceKm;
-    private ArrayList<Materiel>lesMateriels;
+    private ArrayList<Materiel>lesMateriels = new  ArrayList<Materiel>();
     private ContratMaintenance leContrat;
     
     

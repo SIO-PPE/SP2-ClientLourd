@@ -1,0 +1,22 @@
+<!ELEMENT listeMateriel (materiels)>
+<!ELEMENT materiels (sousContrat+)>
+<!ATTLIST materiels idClient ID mode>
+<!ELEMENT sousContrat (materiel*)>
+<!ELEMENT materiel (type, famille, date_vente,date_installation,prix_vente,emplacement,nbJourAvantEcheance)>
+<!ELEMENT type (#PCDATA)>
+<!ATTLIST type refInterne type mode
+                libelle type mode
+>
+<!ELEMENT famille (#PCDATA)>
+<!ATTLIST famille codeFamille type mode
+                libelle type mode
+>
+
+<!ELEMENT date_vente (#PCDATA)>
+
+<!ELEMENT date_installation (#PCDATA)>
+<!ELEMENT prix_vente (#PCDATA)>
+<!ELEMENT emplacement (#PCDATA)>
+<!ELEMENT nbJourAvantEcheance (#PCDATA)>
+
+<!ELEMENT horsContrat (materiel*)>

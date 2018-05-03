@@ -81,6 +81,19 @@ public class PersistanceSQL {
 
 					ContratMaintenance contrat = (ContratMaintenance) ChargerDepuisBase(result.getString(11), "ContratMaintenance");
 					client.setLeContrat(contrat);
+					
+					//CHARGEMENT DES MATERIEL SANS CONTRAT
+					PreparedStatement stmt1;
+					stmt1 = con.prepareStatement("SELECT * FROM materiel WHERE Numero_de_contrat IS NULL ");
+					stmt1.executeQuery();
+					ResultSet result1 = stmt1.getResultSet();
+
+
+					while(result1.next()){
+						Materiel mat = new Materiel(result1.getInt(1), result1.getDate(2), result1.getDate(3), result1.getInt(4), result1.getString(5), (TypeMateriel)  ChargerDepuisBase(result1.getString(6), "LeTypeMateriel")); //TODO LE TYPE;
+						client.getLesMateriels().add(mat);
+						
+					}
 					return client;
 				}
 
