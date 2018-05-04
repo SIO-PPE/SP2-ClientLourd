@@ -8,10 +8,8 @@ package Fichier;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.FilterWriter;
 import java.io.IOException;
 
 /**
@@ -27,23 +25,17 @@ public class Fichier {
     public Fichier(){
         
     }
-    public void ouvrir(String nomDuFichier, char mode)  {
+    public void ouvrir(String nomDuFichier, char mode) throws IOException  {
         this.mode = mode;
         File f = new File(nomDuFichier);
         if (mode == 'R' || mode == 'L') {
-            try {
+        
 				fR = new BufferedReader(new FileReader(f));
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+
         } else if (mode == 'W' || mode == 'e') {
-            try {
+            
 				fW = new BufferedWriter(new FileWriter(f));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+
         }
     }
     
@@ -66,17 +58,14 @@ public class Fichier {
         }
     }
     
-        public void ecrire(String chaine) {
+        public void ecrire(String chaine) throws IOException {
             
         if(chaine != null){
-            try {
+
 				fW.write(chaine, 0, chaine.length());
 
 	            fW.newLine();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+
         }
     }
     

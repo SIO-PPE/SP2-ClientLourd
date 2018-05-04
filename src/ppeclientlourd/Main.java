@@ -1,43 +1,53 @@
 package ppeclientlourd;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import org.xml.sax.SAXParseException;
+import javax.swing.JFileChooser;
 
 import Fichier.Fichier;
+import ie.Fenetre;
+import ie.ZDialog;
+import ie.ZDialog.ZDialogInfo;
 
 
 public class Main {
 
+
+	public static Client activeClient;
+	public static GestionMateriels gestion;
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		
-		
+	   
+        // création de la boîte de dialogue
+
+ 
+    
 		PersistanceSQL sql = new PersistanceSQL();
-		
+
 		//Client client = (Client) sql.ChargerDepuisBase("157856", "Client");
-		GestionMateriels gestion = new GestionMateriels(sql);
-		Client client = gestion.getClient("157856");
-		String xml = gestion.XmlClient(client);
-		
-		
+		 gestion = new GestionMateriels(sql);
+
+		/*	String xml = gestion.XmlClient(client);
+
+
 		System.out.println(xml);
-		
+
 		 Fichier f = new Fichier();
-	        f.ouvrir("materielClient.xml", 'W');
+	        f.ouvrir("dsqd\\Documents\\materielClient.xml", 'W');
 	        f.ecrire(xml);
 	        f.fermer();
-	        
-	        gestion.XmlClientValide(xml);
-	        
-           
 
-		//System.out.println(client.getLeContrat().toString());
-	
+	        gestion.XmlClientValide(xml);
+
+		 
+*/
+		ZDialog zd = new ZDialog(null, "CASHCASH", true);
+		ZDialogInfo zInfo = zd.showZDialog(); 
+		String nom = zd.getZDialog().getNom();
+		activeClient = gestion.getClient(nom);
+		if(activeClient!= null) {
+
+			Fenetre fen = new Fenetre();
+		}
 	}
- 
+
 }
