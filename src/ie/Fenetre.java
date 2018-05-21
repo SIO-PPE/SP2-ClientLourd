@@ -181,7 +181,11 @@ public class Fenetre extends JFrame{
 	        	 
 	        	        
 
-	        	        Main.gestion.XmlClientValide(xml);
+	        	        if(Main.gestion.XmlClientValide(xml)) {
+	        	        	JOptionPane jop3 = new JOptionPane();
+			            	jop3.showMessageDialog(null, "Le fichier xml c'est généré avec succès", "Succès", JOptionPane.INFORMATION_MESSAGE);
+			            
+	        	        }
 	            }
 	        }         
 

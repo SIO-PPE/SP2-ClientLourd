@@ -16,6 +16,8 @@ public class PersistanceSQL {
 	public String motDePasse = "";
 	static Connection con;
 
+	
+	//SELECT `Numero_Client` FROM `contrat_de_maintenance` WHERE `Date_Echeance` < NOW()
 	public PersistanceSQL (){
 		//construit un objet dans PersistanceSQL
 		//cet objet permettra de charger les données depuis une bdd ou de les sauvegarder dans la base  

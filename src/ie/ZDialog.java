@@ -7,6 +7,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -14,9 +16,12 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+
+import ppeclientlourd.Main;
 
 public class ZDialog extends JDialog {
 	public class ZDialogInfo
@@ -57,6 +62,18 @@ public class ZDialog extends JDialog {
 		this.setVisible(true);      
 		return this.zInfo;      
 	}
+	
+	public void valideForm() {
+		zInfo = new ZDialogInfo(nom.getText());
+		Main.activeClient = Main.gestion.getClient(nom.getText());
+		if(Main.activeClient != null) {
+			setVisible(false);
+			Fenetre fen = new Fenetre();
+		}else {
+			JOptionPane jop3 = new JOptionPane();
+        	jop3.showMessageDialog(null, "Identifiant introuvable", "Erreur", JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
 
 	private void initComponent(){
 		//Ic�ne
@@ -83,11 +100,12 @@ public class ZDialog extends JDialog {
 
 		JPanel control = new JPanel();
 		JButton okBouton = new JButton("OK");
-
+		nom.addKeyListener(new ClavierListener(this));
 		okBouton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {        
-				zInfo = new ZDialogInfo(nom.getText());
-				setVisible(false);
+
+				valideForm();
+				
 			}
 
 
@@ -108,4 +126,26 @@ public class ZDialog extends JDialog {
 		this.getContentPane().add(content, BorderLayout.CENTER);
 		this.getContentPane().add(control, BorderLayout.SOUTH);
 	}  
+	
+	class ClavierListener implements KeyListener{
+		private ZDialog z;
+		public ClavierListener(ZDialog z) {
+			this.z =z;
+		}
+
+	    public void keyPressed(KeyEvent event) {
+	    	if(event.getKeyCode() == KeyEvent.VK_ENTER) 
+	    		z.valideForm();
+	    }
+
+
+	    public void keyReleased(KeyEvent event) {
+	    }
+
+
+	    public void keyTyped(KeyEvent event) {
+
+
+	    }  
+	}
 }

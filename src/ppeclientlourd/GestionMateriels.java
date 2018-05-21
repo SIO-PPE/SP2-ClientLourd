@@ -42,8 +42,8 @@ public class GestionMateriels {
     	
     }
     
-    public void XmlClientValide (String xml){
-    	
+    public boolean XmlClientValide (String xml){
+    	boolean value = false;
         ArrayList<SAXParseException> erreurs = new ArrayList();
     try {
         erreurs = ValiderDocXml.chercherErreurs(xml);
@@ -56,10 +56,13 @@ public class GestionMateriels {
             
         } else {
             System.out.println("Pas derreur !");
+            value = true;
         }
         } catch (Exception ex) {
         Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
     }
+    
+    return value;
         
     }
     

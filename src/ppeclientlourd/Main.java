@@ -42,12 +42,9 @@ public class Main {
 */
 		ZDialog zd = new ZDialog(null, "CASHCASH", true);
 		ZDialogInfo zInfo = zd.showZDialog(); 
-		String nom = zd.getZDialog().getNom();
-		activeClient = gestion.getClient(nom);
-		if(activeClient!= null) {
-
-			Fenetre fen = new Fenetre();
-		}
-	}
+		//String nom = zd.getZDialog().getNom();
+		
+		
+			}
 
 }
