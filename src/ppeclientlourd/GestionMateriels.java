@@ -19,7 +19,7 @@ public class GestionMateriels {
     }
     
     public String XmlClient (Client unClient){
-    	String str = "<xml version=\"1.0\" encoding\"UTF-8\"?>\n<!DOCTYPE listeMateriel SYSTEM \"materielClient.dtd\">\n"
+    	String str = "<?xml version=\"1.0\" encoding \"UTF-8\" ?>\n<!DOCTYPE listeMateriel SYSTEM \"materielClient.dtd\">\n"
     			+	 "<listeMateriel>\n"
     			+ 	 "<materiels idClient=\""+unClient.getNumClient() + "\">\n"
     			+    "\t<sousContrat>\n";
@@ -32,6 +32,7 @@ public class GestionMateriels {
 			str+=m.xmlMateriel(0);
 		}
     	str +=  "\t</horsContrat>\n"
+    			+"</materiels>"
     			+ "</listeMateriel>";
     	
         //return String;

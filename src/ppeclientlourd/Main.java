@@ -1,11 +1,12 @@
 package ppeclientlourd;
 
-import javax.swing.JFileChooser;
+import java.io.IOException;
 
-import Fichier.Fichier;
-import ie.Fenetre;
+import com.itextpdf.text.DocumentException;
+
 import ie.ZDialog;
 import ie.ZDialog.ZDialogInfo;
+import pdf.MailSender;
 
 
 public class Main {
@@ -14,36 +15,30 @@ public class Main {
 	public static Client activeClient;
 	public static GestionMateriels gestion;
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	   
-        // création de la boîte de dialogue
-
- 
     
+		//Chargement de la connexion sql
 		PersistanceSQL sql = new PersistanceSQL();
 
-		//Client client = (Client) sql.ChargerDepuisBase("157856", "Client");
+		//ID CLIENT REFERENCE 157856
+		
+		//Remplie l'objet gestion des données de la base de données
 		 gestion = new GestionMateriels(sql);
 
-		/*	String xml = gestion.XmlClient(client);
-
-
-		System.out.println(xml);
-
-		 Fichier f = new Fichier();
-	        f.ouvrir("dsqd\\Documents\\materielClient.xml", 'W');
-	        f.ecrire(xml);
-	        f.fermer();
-
-	        gestion.XmlClientValide(xml);
-
+		//Génération de l'interface graphique
+	//	ZDialog zd = new ZDialog(null, "CASHCASH", true);
+		//ZDialogInfo zInfo = zd.showZDialog(); 
+	
 		 
-*/
-		ZDialog zd = new ZDialog(null, "CASHCASH", true);
-		ZDialogInfo zInfo = zd.showZDialog(); 
-		//String nom = zd.getZDialog().getNom();
-		
+		 MailSender mail = new MailSender(gestion.getClient("157856"));
+		 try {
+			mail.pdf();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (DocumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 			}
 

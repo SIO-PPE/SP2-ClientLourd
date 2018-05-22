@@ -6,11 +6,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
-import com.mysql.cj.conf.ConnectionUrl.Type;
-
-public class PersistanceSQL {
+public class PersistanceSQL {//&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
 	public String url = "jdbc:mysql://localhost:3306/ppe_mlge?useSSL=false";
 	public String utilisateur = "root";
 	public String motDePasse = "";
@@ -23,15 +20,14 @@ public class PersistanceSQL {
 		//cet objet permettra de charger les données depuis une bdd ou de les sauvegarder dans la base  
 
 
-		// chargement du pilote
+
 		try
 		{
 			//loading the jdbc driver
-			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-			//get a connection to database
+			//Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			//Get la connexion à la base de donnée
 			con = DriverManager.getConnection(url,utilisateur,motDePasse);
 
-			//create a statement        
 		}
 		catch(SQLException e)
 		{
@@ -44,10 +40,13 @@ public class PersistanceSQL {
 
 	}
 
-	public void RangerDansBase(Object unObjet){
-		//stock les données de l'objet dans la base de données   
+
+	//stock les données de l'objet dans la base de données 
+	public void RangerDansBase(Object unObjet){  
+		//FOnction inutilisé
 	}
 
+	
 	public Object ChargerDepuisBase(String id, String nomClasse) {
 
 
@@ -66,7 +65,7 @@ public class PersistanceSQL {
                   //toutes les données utiles sont également chargées
 		 * */
 
-
+		//On remplie l'objet Client 
 		if(nomClasse.equalsIgnoreCase("Client")) {
 			PreparedStatement stmt;
 			try {
@@ -75,12 +74,12 @@ public class PersistanceSQL {
 				stmt.executeQuery();
 				ResultSet result = stmt.getResultSet();
 
-
+				//Parcour des résultat
 				if(result.next()){
 
-					//getContrat
+					//Création d'un client avec les données de l'occurence en cour
 					Client client = new Client(id, result.getString(2), result.getString(3), result.getString(4), result.getString(5), result.getString(6), result.getString(8), result.getInt(9),result.getInt(10));
-
+					//Création du contrat lié au client
 					ContratMaintenance contrat = (ContratMaintenance) ChargerDepuisBase(result.getString(11), "ContratMaintenance");
 					client.setLeContrat(contrat);
 					
@@ -115,7 +114,7 @@ public class PersistanceSQL {
 				stmt.executeQuery();
 				ResultSet result = stmt.getResultSet();
 
-
+				//CHARGEMENT MATERIEL AVEC CONTRAT
 				if(result.next()){
 					ContratMaintenance contrat = new ContratMaintenance(id, result.getDate(2), result.getDate(3));
 					PreparedStatement stmt1;

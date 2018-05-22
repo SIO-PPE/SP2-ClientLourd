@@ -7,12 +7,23 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 
-class ContratMaintenance {
+public class ContratMaintenance {
     public String numContrat;
     private Date dateSignature;
     public Date dateEcheance;
     private ArrayList<Materiel>lesMaterielsAssures = new  ArrayList<Materiel>();
     
+    
+    public String[][] getInfoTableau(){
+    	String[][] tabs = new String[lesMaterielsAssures.size()][4];
+    	for(int i = 0; i < lesMaterielsAssures.size(); i++) {
+    		tabs[i][0] = Integer.toString(lesMaterielsAssures.get(i).getNumSerie());
+    		tabs[i][1] = lesMaterielsAssures.get(i).getLeType().getLibelleTypeMateriel();
+    		tabs[i][2] = lesMaterielsAssures.get(i).getLeType().getLaFamille().getLibelleFamille();
+    		tabs[i][3] = lesMaterielsAssures.get(i).getDateVente().toString();
+    	}
+    	return tabs;
+    }
     public long getJoursRestants(){
     	   long CONST_DURATION_OF_DAY = 1000l * 60 * 60 * 24;
         //renvoie le nb de jours avant que le contrat arrive à échéance
