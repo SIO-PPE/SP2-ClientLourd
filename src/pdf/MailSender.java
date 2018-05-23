@@ -45,9 +45,7 @@ public class MailSender {
 	static final String FROM = "lucien.lamarque@gastonberger.fr";
 	static final String FROMNAME = "CashCash";
 
-	// Replace recipient@example.com with a "To" address. If your account 
-	// is still in the sandbox, this address must be verified.
-	static final String TO = "mlamlu@hotmail.fr";
+
 
 	// Replace smtp_username with your Amazon SES SMTP user name.
 	static final String SMTP_USERNAME = "lucien.lamarque@gastonberger.fr";
@@ -82,8 +80,10 @@ public class MailSender {
 
 
 	}
-
-	public void sendMail() throws UnsupportedEncodingException, MessagingException {
+	//retourne vrai si l'envoie est un succes
+	
+	public boolean sendMail() throws UnsupportedEncodingException, MessagingException {
+		boolean succes = false;
 		// Create a Properties object to contain connection configuration information.
 		Properties props = System.getProperties();
 		props.put("mail.transport.protocol", "smtp");
@@ -97,7 +97,7 @@ public class MailSender {
 		// Create a message with the specified information. 
 		MimeMessage msg = new MimeMessage(session);
 		msg.setFrom(new InternetAddress(FROM,FROMNAME));
-		msg.setRecipient(Message.RecipientType.TO, new InternetAddress(TO));
+		msg.setRecipient(Message.RecipientType.TO, new InternetAddress(client.getEmail()));
 		msg.setSubject(SUBJECT);
 
 
@@ -122,6 +122,7 @@ public class MailSender {
 		// Send the message.
 		try
 		{
+			System.out.println("Envoie email à " + client.getEmail());
 			System.out.println("Sending...");
 
 			// Connect to Amazon SES using the SMTP username and password you specified above.
@@ -129,10 +130,14 @@ public class MailSender {
 
 			// Send the email.
 			transport.sendMessage(msg, msg.getAllRecipients());
-			System.out.println("Email sent!");
+			System.out.println("Email envoyé avec succès !");
+			succes = true;
+			
+			
 		}
 		catch (Exception ex) {
-			System.out.println("The email was not sent.");
+			succes = false;
+			System.out.println("Echec d'envoie d'email.");
 			System.out.println("Error message: " + ex.getMessage());
 		}
 		finally
@@ -140,6 +145,7 @@ public class MailSender {
 			// Close and terminate the connection.
 			transport.close();
 		}
+		return succes;
 	}
 
 	public File getPDF(){
@@ -174,16 +180,6 @@ public class MailSender {
 			cb.endText();
 
 
-			/*  Font chapterFont = FontFactory.getFont(FontFactory.HELVETICA, 16, Font.BOLDITALIC);
-	        Font paragraphFont = FontFactory.getFont(FontFactory.HELVETICA, 12, Font.NORMAL);
-	        Chunk chunk = new Chunk("Relance de votre contrat de maintenance", chapterFont);
-	        Chapter chapter = new Chapter(new Paragraph(chunk), 0);
-	        chapter.setNumberDepth(0);
-	        chapter.add(new Paragraph("Bonjour, votre contrat de maintenance qui assure vos caisse enregistreuse à pris fin le " + client.getLeContrat().dateEcheance + ".", paragraphFont));
-	        chapter.add(new Paragraph("Nous vous invitons donc à renouveler votre contrat qui déclare les machines ci présente", paragraphFont));
-
-	        document.add(chapter);
-			 */ 
 			Font chapterFont = FontFactory.getFont(FontFactory.HELVETICA, 16, Font.BOLDITALIC);
 			Font paragraphFont = FontFactory.getFont(FontFactory.HELVETICA, 12, Font.NORMAL);
 			Paragraph paragraph1 = new Paragraph("Relance de votre contrat de maintenance",chapterFont);
@@ -245,64 +241,3 @@ public class MailSender {
 	}
 }
 
-
-// creation of the document with a certain size and certain margins
-// (you can use PageSize.Letter instead of PageSize.A4)
-/*
-
-String[] headers = new String[]{
-        "No", "Username", "First Name", "Last Name"
-};
-
-
-String[][] data = new String[][]{
-        {"1", "jdow", "John", "Dow"},
-        {"2", "stiger", "Scott", "Tiger"},
-        {"3", "fbar", "Foo", "Bar"}
-};
-
-// Create a new document.
-Document document = new Document(PageSize.LETTER.rotate());
-Font bold = new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD);
-Font normal = new Font(Font.FontFamily.HELVETICA, 10, Font.NORMAL);
-
-try {
-    // Get an instance of PdfWriter and create a Table.pdf file
-    // as an output.
-	PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("C:/Users/mlaml/Desktop/PPE/test.pdf"));
-
-    document.open();
-
-    // Create an instance of PdfPTable. After that we transform
-    // the header and data array into a PdfPCell object. When
-    // each table row is complete we have to call the
-    // table.completeRow() method.
-    //
-    // For better presentation we also set the cell normal name,
-    // size and weight. And we also define the background fill
-    // for the cell.
-    PdfPTable table = new PdfPTable(headers.length);
-    for (String header : headers) {
-        PdfPCell cell = new PdfPCell();
-        cell.setGrayFill(0.9f);
-        cell.setPhrase(new Phrase(header, bold));
-        table.addCell(cell);
-    }
-    table.completeRow();
-
-    for (String[] row : data) {
-        for (String column : row) {
-            PdfPCell cell = new PdfPCell();
-            cell.setPhrase(new Phrase(column, normal));
-            table.addCell(cell);
-        }
-        table.completeRow();
-    }
-
-    document.addTitle("RelancePDF");
-document.add(table);
-} catch (DocumentException | FileNotFoundException e) {
-    e.printStackTrace();
-} finally {
-    document.close();
-}*/

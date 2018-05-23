@@ -23,26 +23,36 @@ public class Main {
 		PersistanceSQL sql = new PersistanceSQL();
 
 		//ID CLIENT REFERENCE 157856
-		
+
 		//Remplie l'objet gestion des données de la base de données
 		 gestion = new GestionMateriels(sql);
+	 		//Check Email renew
+		 
+		 
+		 
+		    Thread t = new Thread(new ZDialog(null, "CASHCASH", true));
+		    t.start();
+		 
+		 
+		 System.out.println("Recherche de client aux contrat à renouveller..");
+	for(Client c : sql.getClientsToSendMail()) {
+		MailSender mail = new MailSender(c);
+		try {
+			if(mail.sendMail())
+				sql.setRelanceEmail(c);
+		} catch (UnsupportedEncodingException | MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
-		//Génération de l'interface graphique
-	//	ZDialog zd = new ZDialog(null, "CASHCASH", true);
-		//ZDialogInfo zInfo = zd.showZDialog(); 
 	
 		 
-		 MailSender mail = new MailSender(gestion.getClient("157856"));
+		
+
 		 
-		 try {
-			mail.sendMail();
-		} catch (UnsupportedEncodingException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (MessagingException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+			
+
 		 
 
 		

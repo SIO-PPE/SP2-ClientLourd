@@ -11,19 +11,17 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import ppeclientlourd.Main;
 
-public class ZDialog extends JDialog {
+public class ZDialog extends JDialog implements Runnable {
 	public class ZDialogInfo
 
 	{
@@ -52,6 +50,7 @@ public class ZDialog extends JDialog {
 		this.setResizable(false);
 		//this.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 		this.initComponent();
+		
 	}
 
 	public ZDialogInfo getZDialog(){
@@ -147,5 +146,11 @@ public class ZDialog extends JDialog {
 
 
 	    }  
+	}
+
+	@Override
+	public void run() {
+		showZDialog(); 
+		
 	}
 }

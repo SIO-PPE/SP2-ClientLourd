@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class PersistanceSQL {//&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
 	public String url = "jdbc:mysql://localhost:3306/ppe_mlge?useSSL=false";
@@ -39,7 +40,42 @@ public class PersistanceSQL {//&useJDBCCompliantTimezoneShift=true&useLegacyDate
 		}
 
 	}
+	
+	public void setRelanceEmail(Client client) {
+		PreparedStatement stmt1;
+		try {
+			stmt1 = con.prepareStatement("UPDATE contrat_de_maintenance SET RelanceEmail = 1 WHERE Numero_Client = "+client.getNumClient());
 
+			stmt1.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+    //SELECT `Numero_Client` FROM `contrat_de_maintenance` WHERE `Date_Echeance` > NOW() and `RelanceEmail` = 0;
+    public ArrayList<Client> getClientsToSendMail(){
+    	ArrayList<Client> clientsNeedRenew = new ArrayList<Client>();
+    	PreparedStatement stmt;
+		
+			try {
+				stmt = con.prepareStatement("SELECT Numero_Client FROM contrat_de_maintenance WHERE Date_Echeance < NOW() and RelanceEmail = 0");
+
+			stmt.executeQuery();
+			ResultSet result = stmt.getResultSet();
+			while(result.next()){
+				
+				clientsNeedRenew.add((Client) ChargerDepuisBase(result.getString(1), "Client"));
+			}
+			
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+			
+    	return clientsNeedRenew;
+    }
 
 	//stock les données de l'objet dans la base de données 
 	public void RangerDansBase(Object unObjet){  

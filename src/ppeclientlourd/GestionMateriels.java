@@ -13,13 +13,15 @@ public class GestionMateriels {
     public GestionMateriels (PersistanceSQL lesDonnees){
         //construit un objet GestionMateriels avec un modèle de persistance associé
     	this.donnees = lesDonnees;
-    }    
+    }  
+    
+
     public Client getClient(String idClient){
        return (Client) donnees.ChargerDepuisBase(idClient, "Client");
     }
     
     public String XmlClient (Client unClient){
-    	String str = "<?xml version=\"1.0\" encoding \"UTF-8\" ?>\n<!DOCTYPE listeMateriel SYSTEM \"materielClient.dtd\">\n"
+    	String str = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<!DOCTYPE listeMateriel SYSTEM \"materielClient.dtd\">\n"
     			+	 "<listeMateriel>\n"
     			+ 	 "<materiels idClient=\""+unClient.getNumClient() + "\">\n"
     			+    "\t<sousContrat>\n";
