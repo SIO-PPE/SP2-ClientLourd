@@ -1,6 +1,9 @@
 package ppeclientlourd;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+
+import javax.mail.MessagingException;
 
 import com.itextpdf.text.DocumentException;
 
@@ -30,15 +33,18 @@ public class Main {
 	
 		 
 		 MailSender mail = new MailSender(gestion.getClient("157856"));
+		 
 		 try {
-			mail.pdf();
-		} catch (IOException e) {
+			mail.sendMail();
+		} catch (UnsupportedEncodingException e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (DocumentException e) {
+			e1.printStackTrace();
+		} catch (MessagingException e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e1.printStackTrace();
 		}
+		 
+
 		
 			}
 
