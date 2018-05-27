@@ -40,17 +40,14 @@ public class MailSender {
 
 	private Client client;
 
-	// Replace sender@example.com with your "From" address.
-	// This address must be verified.
-	static final String FROM = "lucien.lamarque@gastonberger.fr";
+	
+	static final String FROM = "cashcash@rushy.fr";
 	static final String FROMNAME = "CashCash";
 
 
+	static final String SMTP_USERNAME = "cashcash@rushy.fr";
 
-	// Replace smtp_username with your Amazon SES SMTP user name.
-	static final String SMTP_USERNAME = "lucien.lamarque@gastonberger.fr";
-
-	// Replace smtp_password with your Amazon SES SMTP password.
+	// SES SMTP password.
 	static final String SMTP_PASSWORD = "";
 
 	// The name of the Configuration Set to use for this message.
@@ -60,7 +57,7 @@ public class MailSender {
 	// Amazon SES SMTP host name. This example uses the US West (Oregon) region.
 	// See http://docs.aws.amazon.com/ses/latest/DeveloperGuide/regions.html#region-endpoints
 	// for more information.
-	static final String HOST = "smtp-mail.outlook.com";
+	static final String HOST = "mail.firstheberg.net";
 
 	// The port you will connect to on the Amazon SES SMTP endpoint. 
 	static final int PORT = 587;
