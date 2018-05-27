@@ -51,7 +51,7 @@ public class MailSender {
 	static final String SMTP_USERNAME = "lucien.lamarque@gastonberger.fr";
 
 	// Replace smtp_password with your Amazon SES SMTP password.
-	static final String SMTP_PASSWORD = "Arkana761";
+	static final String SMTP_PASSWORD = "";
 
 	// The name of the Configuration Set to use for this message.
 	// If you comment out or remove this variable, you will also need to
