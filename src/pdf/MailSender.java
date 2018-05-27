@@ -48,7 +48,7 @@ public class MailSender {
 	static final String SMTP_USERNAME = "cashcash@rushy.fr";
 
 	// SES SMTP password.
-	static final String SMTP_PASSWORD = "";
+	static final String SMTP_PASSWORD = "CashCash1";
 
 	// The name of the Configuration Set to use for this message.
 	// If you comment out or remove this variable, you will also need to
